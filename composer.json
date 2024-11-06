@@ -1,0 +1,30 @@
+{
+    "name": "torskint/laravel-theme-generator",
+    "description": "A package to generate dynamic themes in Laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Torskint\\ThemeGenerator\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.3",
+        "illuminate/support": "^8.0|^9.0|^10.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tor Skint",
+            "email": "ton.email@example.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Torskint\\ThemeGenerator\\ThemeGeneratorServiceProvider"
+            ]
+        }
+    }
+}
