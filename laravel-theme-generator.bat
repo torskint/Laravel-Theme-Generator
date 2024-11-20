@@ -2,8 +2,11 @@
 echo Type "c" for commit, "u" for update, or "q" to quit.
 cd "F:\htdocs\htdocs\laravel-projects\theme-generator-package__test\packages\laravel-theme-generator"
 
+rem set GIT_PATH="C:\Program Files\Git\bin\git.exe"
+rem set BRANCH="origin main"
+
 set GIT_PATH="C:\Program Files\Git\bin\git.exe"
-set BRANCH="origin main"
+set BRANCH = "origin master"
 
 :P
 set ACTION=
@@ -31,8 +34,8 @@ if "%ACTION%"=="c" (
     )
 
     rem Add the tag to the commit
-    echo Adding tag %TAG_NAME%...
-    %GIT_PATH% tag %TAG_NAME%
+    rem echo Adding tag %TAG_NAME%...
+    rem %GIT_PATH% tag %TAG_NAME%
 
     rem Optionally pull before pushing
     rem %GIT_PATH% pull %BRANCH%
@@ -42,8 +45,8 @@ if "%ACTION%"=="c" (
     %GIT_PATH% push %BRANCH%
 
     rem Push the tag to the remote repository
-    echo Pushing tag %TAG_NAME%...
-    %GIT_PATH% push %BRANCH% %TAG_NAME%
+    rem echo Pushing tag %TAG_NAME%...
+    rem %GIT_PATH% push %BRANCH% %TAG_NAME%
 )
 
 rem Update action
