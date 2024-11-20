@@ -17,12 +17,9 @@ if "%ACTION%"=="c" (
     echo Adding changes to staging...
     %GIT_PATH% add -A
 
-    rem Get the current date and time for commit message
-    set COMMIT_DATE="1.1.2"
-
     rem Commit with a message including the date and time
     echo Committing changes with message...
-    %GIT_PATH% commit -am "Auto-committed on %COMMIT_DATE%"
+    %GIT_PATH% commit -m "Auto-committed on %date%"
 
     rem Ask the user for a custom tag
     :D
@@ -30,16 +27,15 @@ if "%ACTION%"=="c" (
 
     rem rem Check if the tag name is empty
     if "%TAG_NAME%"=="" (
-        echo No tag entered. Using default tag based on date and time.
         goto D
     )
 
     rem Add the tag to the commit
     echo Adding tag %TAG_NAME%...
-    rem %GIT_PATH% tag %TAG_NAME%
+    %GIT_PATH% tag %TAG_NAME%
 
     rem Push the changes to the remote branch
-    %GIT_PATH% push %BRANCH% --tag %TAG_NAME%
+    %GIT_PATH% push %BRANCH% --tags
 )
 
 rem Quit
