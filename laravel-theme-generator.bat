@@ -39,7 +39,8 @@ if "%ACTION%"=="c" (
 
     rem Push the changes to the remote branch
     rem echo Pushing changes to %BRANCH%...
-    %GIT_PATH% push %BRANCH%
+    %GIT_PATH% push %BRANCH% --tags
+    rem git push origin main --tags
 
     rem Push the tag to the remote repository
     rem echo Pushing tag %TAG_NAME%...
