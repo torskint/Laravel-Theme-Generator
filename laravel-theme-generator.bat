@@ -25,13 +25,13 @@ if "%ACTION%"=="c" (
     %GIT_PATH% commit -am "Auto-committed on %COMMIT_DATE%"
 
     rem Ask the user for a custom tag
-    set /P TAG_NAME=Enter a tag name for this commit: 
+    rem set /P TAG_NAME=Enter a tag name for this commit: 
 
-    rem Check if the tag name is empty
-    if "%TAG_NAME%"=="" (
-        echo No tag entered. Using default tag based on date and time.
-        set TAG_NAME=commit_%COMMIT_DATE%
-    )
+    rem rem Check if the tag name is empty
+    rem if "%TAG_NAME%"=="" (
+    rem     echo No tag entered. Using default tag based on date and time.
+    rem     set TAG_NAME=commit_%COMMIT_DATE%
+    rem )
 
     rem Add the tag to the commit
     rem echo Adding tag %TAG_NAME%...
@@ -49,15 +49,9 @@ if "%ACTION%"=="c" (
     rem %GIT_PATH% push %BRANCH% %TAG_NAME%
 )
 
-rem Update action
-if "%ACTION%"=="u" (
-    echo Pulling latest changes from %BRANCH%...
-    %GIT_PATH% pull %BRANCH%
-)
-
 rem Quit
 if "%ACTION%"=="q" exit /b
 
 rem Handle invalid input
-echo Invalid action, please type "c", "u", or "q".
+rem echo Invalid action, please type "c", "u", or "q".
 goto P
