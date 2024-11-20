@@ -25,20 +25,17 @@ if "%ACTION%"=="c" (
     %GIT_PATH% commit -am "Auto-committed on %COMMIT_DATE%"
 
     rem Ask the user for a custom tag
-    rem set /P TAG_NAME=Enter a tag name for this commit: 
+    set /P TAG_NAME=Enter a tag name for this commit: 
 
     rem rem Check if the tag name is empty
-    rem if "%TAG_NAME%"=="" (
-    rem     echo No tag entered. Using default tag based on date and time.
-    rem     set TAG_NAME=commit_%COMMIT_DATE%
-    rem )
+    if "%TAG_NAME%"=="" (
+        echo No tag entered. Using default tag based on date and time.
+        set TAG_NAME=commit_%COMMIT_DATE%
+    )
 
     rem Add the tag to the commit
-    rem echo Adding tag %TAG_NAME%...
-    rem %GIT_PATH% tag %TAG_NAME%
-
-    rem Optionally pull before pushing
-    rem %GIT_PATH% pull %BRANCH%
+    echo Adding tag %TAG_NAME%...
+    %GIT_PATH% tag %TAG_NAME%
 
     rem Push the changes to the remote branch
     echo Pushing changes to %BRANCH%...
