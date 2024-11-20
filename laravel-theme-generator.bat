@@ -25,12 +25,13 @@ if "%ACTION%"=="c" (
     %GIT_PATH% commit -am "Auto-committed on %COMMIT_DATE%"
 
     rem Ask the user for a custom tag
+    :D
     set /P TAG_NAME=Enter a tag name for this commit: 
 
     rem rem Check if the tag name is empty
     if "%TAG_NAME%"=="" (
         echo No tag entered. Using default tag based on date and time.
-        set TAG_NAME=commit_%COMMIT_DATE%
+        goto D
     )
 
     rem Add the tag to the commit
