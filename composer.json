@@ -9,13 +9,14 @@
     },
     "require": {
         "php": ">=7.3",
-        "illuminate/support": "^8.0|^9.0|^10.0"
+        "illuminate/support": "^8.0|^9.0|^10.0",
+        "intervention/image": "^2"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Tor Skint",
-            "email": "ton.email@example.com"
+            "email": "da.aristo.y@gmail.com"
         }
     ],
     "minimum-stability": "dev",
