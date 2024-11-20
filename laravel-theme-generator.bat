@@ -18,7 +18,7 @@ if "%ACTION%"=="c" (
     %GIT_PATH% add -A
 
     rem Get the current date and time for commit message
-    for /f "tokens=2 delims==" %%I in ('"echo %date% %time%"') do set COMMIT_DATE=%%I
+    set COMMIT_DATE="1.1.2"
 
     rem Commit with a message including the date and time
     echo Committing changes with message...
