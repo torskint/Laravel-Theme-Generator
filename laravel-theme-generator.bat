@@ -35,7 +35,7 @@ if "%ACTION%"=="c" (
     %GIT_PATH% tag %TAG_NAME%
 
     rem Push the changes to the remote branch
-    %GIT_PATH% push %BRANCH% --tags
+    %GIT_PATH% push %BRANCH% tag %TAG_NAME%
 )
 
 rem Quit
