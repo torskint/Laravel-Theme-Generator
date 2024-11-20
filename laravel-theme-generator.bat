@@ -3,7 +3,7 @@ echo Type "c" for commit, "u" for update, or "q" to quit.
 cd "F:\htdocs\htdocs\laravel-projects\theme-generator-package__test\packages\laravel-theme-generator"
 
 set GIT_PATH="C:\Program Files\Git\bin\git.exe"
-set BRANCH="origin master"
+set BRANCH="origin main"
 
 :P
 set ACTION=
