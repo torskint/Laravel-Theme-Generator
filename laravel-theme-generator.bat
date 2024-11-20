@@ -34,7 +34,7 @@ if "%ACTION%"=="c" (
     echo Adding tag %TAG_NAME%...
     %GIT_PATH% tag %TAG_NAME%
 
-    rem Push the changes to the remote branch
+    rem Push the changes to the remote branch tag
     %GIT_PATH% push %BRANCH%
     %GIT_PATH% push origin %TAG_NAME%
 )
