@@ -3,11 +3,9 @@
 namespace Torskint\ThemeGenerator;
 
 use Illuminate\Support\ServiceProvider;
+
 use Torskint\ThemeGenerator\Console\Commands\GenerateThemeCommand;
 use Torskint\ThemeGenerator\Console\Commands\GenerateImageThemeCommand;
-use Intervention\Image\ImageManagerStatic as Image;
-use Intervention\Image\ImageManager;
-
 use Torskint\ThemeGenerator\Http\Middleware\SetThemeMiddleware;
 
 class ThemeGeneratorServiceProvider extends ServiceProvider
@@ -32,19 +30,11 @@ class ThemeGeneratorServiceProvider extends ServiceProvider
 
         // Publier le fichier de configuration dans le dossier config/
         $this->publishes([
-            __DIR__.'/../../config/theme-generator.php' => config_path('theme-generator.php'),
+            __DIR__.'/../../config/torskint-theme-generator.php' => config_path('torskint-theme-generator.php'),
         ], 'config');
 
-        // Publier les fichiers CSS générés dans le dossier public
-        $this->publishes([
-            __DIR__ . '/../public/assets' => public_path('assets/theme-generator'),
-        ], 'public');
-
         // Enregistrement du middleware pour gérer le thème
-        $this->app['router']->pushMiddlewareToGroup('web', SetThemeMiddleware::class);
-
-        // Charger les vues si nécessaires
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'theme-generator');
+        // $this->app['router']->pushMiddlewareToGroup('web', SetThemeMiddleware::class);
     }
 
 
@@ -67,12 +57,6 @@ class ThemeGeneratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // dd(new ImageManager);
-        // Enregistrement d'une instance globale pour Image (Intervention Image)
-        // $this->app->singleton('Image', function ($app) {
-        //     return new Image();
-        // });
-        
         $this->commands([
             \Torskint\ThemeGenerator\Console\Commands\GenerateThemeCommand::class,
             \Torskint\ThemeGenerator\Console\Commands\GenerateImageThemeCommand::class,

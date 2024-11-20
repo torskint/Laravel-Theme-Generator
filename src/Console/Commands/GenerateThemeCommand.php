@@ -11,18 +11,14 @@ class GenerateThemeCommand extends Command
     protected $signature      = 'theme:generate {--theme=}';
     protected $description    = 'Génère des thèmes pour l\'application.';
 
-    protected $sourcePath     = null;
-    protected $publicPath     = null;
-    protected $manifestPath   = null;
-    protected $themeFilePath  = null;
-
     public function handle()
     {
         $themeOption            = $this->option('theme');
-        $this->sourcePath       = resource_path('theme-generator/assets');
-        $this->publicPath       = public_path('assets');
-        $this->manifestPath     = resource_path('theme-generator/manifest.json');
-        $this->themeFilePath    = resource_path('theme-generator/theme.json');
+
+        $this->sourcePath       = config('css_directory');
+        $this->publicPath       = config('output_directory');
+        $this->manifestPath     = config('default_manifest');
+        $this->themeFilePath    = config('theme_file_path');
 
         if (!File::exists($this->sourcePath)) {
             $this->info("Copie initiale des fichiers depuis public/assets vers resources/theme-generator/assets.");

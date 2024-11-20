@@ -20,15 +20,13 @@ class GenerateImageThemeCommand extends Command
 
     public function handle()
     { 
-        $themeOption    = $this->option('theme');
-        $manifestPath   = resource_path('theme-generator/manifest.json');
-
         $themeOption            = $this->option('theme');
-        $this->sourcePath       = resource_path('theme-generator/assets');
-        $this->publicPath       = public_path('assets');
-        $this->manifestPath     = resource_path('theme-generator/manifest.json');
-        $this->themeFilePath    = resource_path('theme-generator/theme.json');
-        $this->ImageCachePath   = resource_path('theme-generator/image-cache.json');
+        
+        $this->sourcePath       = config('css_directory');
+        $this->publicPath       = config('output_directory');
+        $this->manifestPath     = config('default_manifest');
+        $this->themeFilePath    = config('theme_file_path');
+        $this->ImageCachePath   = config('image_cache_path');
         $this->InitImageCache   = null;
         
         if (!File::exists($this->themeFilePath)) {

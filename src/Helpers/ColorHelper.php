@@ -2,8 +2,6 @@
 
 namespace Torskint\ThemeGenerator\Helpers;
 
-// namespace App\Helpers;
-
 class ColorHelper
 {
 

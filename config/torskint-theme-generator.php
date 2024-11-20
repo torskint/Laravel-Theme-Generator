@@ -22,6 +22,8 @@ return [
     |
     */
     'css_directory' => resource_path('theme-generator/assets'),
+    'theme_file_path' => resource_path('theme-generator/theme.json'),
+    'image_cache_path' => resource_path('theme-generator/image-cache.json'),
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +34,7 @@ return [
     | By default, it's set to the 'public/assets/theme-generator' folder.
     |
     */
-    'output_directory' => public_path('assets/theme-generator'),
+    'output_directory' => public_path('assets'),
 
     /*
     |--------------------------------------------------------------------------
