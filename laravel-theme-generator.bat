@@ -1,6 +1,6 @@
 @echo off
 echo Type "c" for commit, "u" for update, or "q" to quit.
-cd "F:\htdocs\htdocs\laravel-projects\theme-generator-package__test\packages\laravel-theme-generator"
+cd "F:\htdocs\htdocs\laravel-packages\laravel-theme-generator"
 
 rem set GIT_PATH="C:\Program Files\Git\bin\git.exe"
 rem set BRANCH="origin main"
