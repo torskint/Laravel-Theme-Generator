@@ -5,20 +5,24 @@ namespace Torskint\ThemeGenerator\Console\Commands;
 use Illuminate\Console\Command;
 use Torskint\ThemeGenerator\Helpers\ColorHelper;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
 
 class GenerateThemeCommand extends Command
 {
     protected $signature      = 'theme:generate {--theme=}';
     protected $description    = 'Génère des thèmes pour l\'application.';
 
+    // php artisan theme:generate
+    // php artisan theme:generate --theme=45
+
     public function handle()
     {
         $themeOption            = $this->option('theme');
 
-        $this->sourcePath       = config('css_directory');
-        $this->publicPath       = config('output_directory');
-        $this->manifestPath     = config('default_manifest');
-        $this->themeFilePath    = config('theme_file_path');
+        $this->sourcePath       = config('torskint-theme-generator.css_directory');
+        $this->publicPath       = config('torskint-theme-generator.output_directory');
+        $this->manifestPath     = config('torskint-theme-generator.default_manifest');
+        $this->themeFilePath    = config('torskint-theme-generator.theme_file_path');
 
         if (!File::exists($this->sourcePath)) {
             $this->info("Copie initiale des fichiers depuis public/assets vers resources/theme-generator/assets.");
@@ -39,12 +43,19 @@ class GenerateThemeCommand extends Command
 
         $manifest = json_decode(File::get($this->manifestPath), true);
         if ( empty($themeOption) ) {
+             // php artisan theme:generate
             $this->info("Génération de 100 thèmes aléatoires...");
             $this->generate100Themes($manifest, $this->sourcePath, $this->publicPath);
         } else {
+             // php artisan theme:generate --theme=45
             $this->info("Application du thème: theme_$themeOption");
             $this->applyTheme($manifest, $themeOption, $this->sourcePath, $this->publicPath);
         }
+
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
 
         $this->info("Thèmes générés avec succès !");
     }

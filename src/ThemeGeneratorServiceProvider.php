@@ -3,7 +3,6 @@
 namespace Torskint\ThemeGenerator;
 
 use Illuminate\Support\ServiceProvider;
-
 use Torskint\ThemeGenerator\Console\Commands\GenerateThemeCommand;
 use Torskint\ThemeGenerator\Console\Commands\GenerateImageThemeCommand;
 use Torskint\ThemeGenerator\Http\Middleware\SetThemeMiddleware;
@@ -17,26 +16,25 @@ class ThemeGeneratorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Enregistrer la commande Artisan
+        // Enregistrer les commandes Artisan
         if ($this->app->runningInConsole()) {
             $this->commands([
                 GenerateThemeCommand::class,
                 GenerateImageThemeCommand::class,
             ]);
+
+            // Publier le fichier de configuration
+            $this->publishes([
+                __DIR__.'/../config/torskint-theme-generator.php' => config_path('torskint-theme-generator.php'),
+            ], 'config');
         }
 
         // Charger les helpers
         $this->loadHelpers();
 
-        // Publier le fichier de configuration dans le dossier config/
-        $this->publishes([
-            __DIR__.'/../../config/torskint-theme-generator.php' => config_path('torskint-theme-generator.php'),
-        ], 'config');
-
-        // Enregistrement du middleware pour gérer le thème
+        // Middleware (décommenter si besoin)
         // $this->app['router']->pushMiddlewareToGroup('web', SetThemeMiddleware::class);
     }
-
 
     /**
      * Charger les helpers du package.
@@ -57,9 +55,10 @@ class ThemeGeneratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands([
-            \Torskint\ThemeGenerator\Console\Commands\GenerateThemeCommand::class,
-            \Torskint\ThemeGenerator\Console\Commands\GenerateImageThemeCommand::class,
-        ]);
+        // Bien vérifier le chemin ici (un niveau en dessous par rapport à boot)
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/torskint-theme-generator.php',
+            'torskint-theme-generator'
+        );
     }
 }
